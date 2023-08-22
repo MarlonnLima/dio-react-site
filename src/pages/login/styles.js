@@ -14,7 +14,9 @@ export const Container = styled.main`
 
 export const Wrapper = styled.div`
     max-width: 300px;
+    margin: 0 auto;
 `
+
 
 export const Column = styled.div`
     flex: 1;
@@ -37,6 +39,7 @@ export const Title = styled.h2`
     width: 440px;
     margin-bottom: 20px;
     line-height: 44px;
+    margin: 0 auto;
 
     color: #FFF;
 `
@@ -61,15 +64,20 @@ export const EsqueciText = styled.p`
     color: #E5E044
 `
 
-export const CriarText = styled.p`
+export const CriarConta = styled.a`
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     margin-bottom: 35px;
     line-height: 25px;
+    text-decoration: none;
 
-    color: #E23DD7
+    color: #E23DD7;
+
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 

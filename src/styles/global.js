@@ -14,4 +14,8 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Open Sans';
 
     }
+
+    a{
+        text-decoration: none;
+    }
 `

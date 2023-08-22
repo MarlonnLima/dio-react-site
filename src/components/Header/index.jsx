@@ -24,7 +24,9 @@ export default function Header({ auth }) {
     <Wrapper>
       <Container>
         <Row>
-          <Link to="/"><Logo src={logo} alt="Logo da Dio" /></Link>
+          <Link to="/">
+            <Logo src={logo} alt="Logo da Dio" />
+          </Link>
           {auth ? (
             <>
               <BuscarInputContainer placeholder="Buscar..." />
@@ -40,7 +42,10 @@ export default function Header({ auth }) {
             <>
               <MenuRight href="#">Home</MenuRight>
               <Button title="Entrar" onClick={handleClickSignIn} />
-              <Button title="Cadastrar" onClick={handleClickSignIn} />
+              <Button
+                title="Cadastrar"
+                onClick={() => navigate("/cadastrar")}
+              />
             </>
           )}
         </Row>

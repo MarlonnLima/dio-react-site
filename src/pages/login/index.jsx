@@ -3,7 +3,7 @@ import {
   Title,
   TitleHighlight,
   Column,
-  CriarText,
+  CriarConta,
   EsqueciText,
   Row,
   SubtitleLogin,
@@ -16,13 +16,55 @@ import EmailIcon from "@mui/icons-material/Email";
 import Button from "../../components/Button/index";
 import Input from "../../components/Input";
 import Header from "../../components/Header";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-export default function Home() {
+import { api } from "../../services/api";
+
+import { useForm } from "react-hook-form";
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Email não é valido")
+      .required("Campo Obrigatório"),
+    password: yup
+      .string()
+      .min(6, "No minímo 6 caracteres")
+      .required("Campo Obrigatório"),
+  })
+  .required();
+
+export default function Login() {
   const navigate = useNavigate();
 
-  const handleClickLogin = () => {
-    navigate("/feed");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+
+  console.log(errors, isValid);
+
+  const onSubmit = async (formData) => {
+    try {
+      const { data } = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
+      
+      if(data.length === 1){
+        navigate("/feed");
+      }else{
+        alert('Email ou senha inválido')
+      }
+
+    } catch {
+      alert('Houve um erro, tente novamente')
+    }
   };
+
   return (
     <>
       <Header />
@@ -36,27 +78,31 @@ export default function Home() {
 
         <Column>
           <Wrapper>
-            <Title>
+            <Title variant="secondary">
               Faça seu <TitleHighlight>cadastro</TitleHighlight>
             </Title>
             <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
-            <form>
-              <Input placeholder="E-mail" leftIcon={<EmailIcon />} />
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Input
+                name="email"
+                control={control}
+                errorMessage={errors?.email?.message}
+                placeholder="E-mail"
+                leftIcon={<EmailIcon />}
+              />
+              <Input
+                name="password"
+                control={control}
+                errorMessage={errors?.password?.message}
                 placeholder="Senha"
                 type="password"
                 leftIcon={<LockIcon />}
               />
-              <Button
-                title="Entrar"
-                variant="secondary"
-                onClick={handleClickLogin}
-                type="button"
-              />
+              <Button title="Entrar" variant="secondary" type="submit" />
             </form>
             <Row>
               <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText>Criar Conta</CriarText>
+              <CriarConta onClick={()=> navigate('/cadastrar')}>Criar Conta</CriarConta>
             </Row>
           </Wrapper>
         </Column>

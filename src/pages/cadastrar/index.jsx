@@ -21,7 +21,6 @@ import {
   Wrapper,
 } from "./styles";
 import Button from "../../components/Button";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const schema = yup

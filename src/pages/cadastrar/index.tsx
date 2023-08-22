@@ -110,6 +110,7 @@ export default function Cadastrar() {
                 control={control}
                 errorMessage={errors?.senha?.message}
                 placeholder="Senha"
+                type="password"
                 leftIcon={<LockIcon />}
               />
 

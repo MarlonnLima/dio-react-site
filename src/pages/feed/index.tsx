@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Container, Column, Title, TitleHighlight } from "./styles";
 import Card from "../../components/Card";
 import UserInfo from "../../components/UserInfo";
@@ -22,7 +24,9 @@ export default function Feed() {
         </Column>
 
         <Column flex={1}>
-          <TitleHighlight># RANKING 5 TOP DA SEMANA</TitleHighlight>
+          <Title>
+            <TitleHighlight># RANKING 5 TOP DA SEMANA</TitleHighlight>
+          </Title>
           <UserInfo
             percentual={80}
             name="Marlon Lima"

@@ -17,11 +17,12 @@ import {
   HighlightText,
   SubtitleText,
   Title,
-  haveAccount,
   Wrapper,
+  HaveAccount
 } from "./styles";
 import Button from "../../components/Button";
 import { toast } from "react-toastify";
+import React from "react";
 
 const schema = yup
   .object({
@@ -59,7 +60,7 @@ export default function Cadastrar() {
       .then((response) => {
         console.log(response);
         reset({ name: '', senha: '', email: ''});
-        toast('Cadastro feito com sucesso, agora vamos logar!')
+        toast.success('Cadastro feito com sucesso, agora vamos logar!')
         
         const toLogin = setInterval(() => {
           navigate('/login')
@@ -67,7 +68,7 @@ export default function Cadastrar() {
         }, 5000);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Houve um erro no seu cadastro, tente novamente")
       });
     }
   };
@@ -107,7 +108,7 @@ export default function Cadastrar() {
               <Input
                 name="senha"
                 control={control}
-                errorMessage={errors?.password?.message}
+                errorMessage={errors?.senha?.message}
                 placeholder="Senha"
                 leftIcon={<LockIcon />}
               />
@@ -124,12 +125,12 @@ export default function Cadastrar() {
               Políticas de Privacidade e os Termos de Uso da DIO.
             </SubtitleText>
 
-            <haveAccount>
+            <HaveAccount>
               Já tenho conta.{" "}
               <Link to="/login">
                 <HighlightText>Fazer Login</HighlightText>
               </Link>
-            </haveAccount>
+            </HaveAccount>
           </Wrapper>
         </Column>
       </Container>

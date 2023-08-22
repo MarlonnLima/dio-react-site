@@ -1,4 +1,7 @@
 import styled, { css } from 'styled-components'
+import './types'
+import { ITitleStyled, IWrapperStyled } from './types'
+
 
 export const Container = styled.div`
     width: 100%;
@@ -8,7 +11,7 @@ export const Container = styled.div`
     height: 80vh;
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<IWrapperStyled>`
     max-width: 300px;
     margin: 0 auto;
 
@@ -21,7 +24,7 @@ export const Column = styled.div`
     flex: 1;
 `
 
-export const Title = styled.h1`
+export const Title = styled.h1<ITitleStyled>`
     font-size: 32px;
     font-weight: 700;
     line-height: 44px;
@@ -39,7 +42,7 @@ export const SubtitleText = styled.p`
     margin: 15px 0px;
 `
 
-export const haveAccount = styled.p`
+export const HaveAccount = styled.p`
     font-size: 14px;
     line-height: 19px;
 `

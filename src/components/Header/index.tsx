@@ -1,3 +1,5 @@
+import React from "react";
+
 import Button from "../Button";
 import logo from "../../assets/LOGO-DIO-COLOR.png";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,8 +14,9 @@ import {
   Logo,
   UserPicture,
 } from "./styles";
+import { IHeader } from "./types";
 
-export default function Header({ auth }) {
+export default function Header({ auth }: IHeader) {
   const navigate = useNavigate();
 
   const handleClickSignIn = () => {

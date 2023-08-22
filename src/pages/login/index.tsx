@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Container,
   Title,
@@ -23,6 +25,9 @@ import { api } from "../../services/api";
 
 import { useForm } from "react-hook-form";
 
+import { IFormData } from './types'
+import { toast } from "react-toastify";
+
 const schema = yup
   .object({
     email: yup
@@ -43,25 +48,25 @@ export default function Login() {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<IFormData>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
   console.log(errors, isValid);
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: IFormData) => {
     try {
       const { data } = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
       
       if(data.length === 1){
         navigate("/feed");
       }else{
-        alert('Email ou senha inválido')
+        toast.warn('Email ou senha inválido')
       }
 
     } catch {
-      alert('Houve um erro, tente novamente')
+      toast.error('Houve um erro, tente novamente')
     }
   };
 

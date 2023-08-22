@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Container, TextContent, Title, TitleHighlight } from "./styles";
 import { useNavigate } from 'react-router-dom'
 

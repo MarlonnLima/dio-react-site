@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ITitleStyled } from './types'
 
 export const Container = styled.main`
     width: 100%;
@@ -31,7 +32,7 @@ export const Row = styled.div`
 `
 
 
-export const Title = styled.h2`
+export const Title = styled.h2<ITitleStyled>`
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
